@@ -1,13 +1,12 @@
-import FileComponent from "./components/FileComponent";
-import FolderComponent from "./components/FolderComponent";
+import RecursiveComponent from "./components/RecursiveComponent";
+import { fileTree } from "./data/fileTree";
 
 const App = () => {
 
   return (
-    <>
-      <FileComponent filename="index.html" />
-      <FolderComponent foldername="node_modules" />
-    </>
+    <div className="my-5">
+      <RecursiveComponent fileTree={fileTree}/>
+    </div>
   );
 }
 

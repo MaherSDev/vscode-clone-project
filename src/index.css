@@ -59,3 +59,7 @@
 html {
   font-family: var(--font-assistant), sans-serif;
 }
+body{
+  color: #fff;
+  background-color: #000;
+}
