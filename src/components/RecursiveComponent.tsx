@@ -4,6 +4,7 @@ import FileIcon from "./SVG/File";
 import FolderIcon from "./SVG/Folder";
 import RightArrowIcon from "./SVG/Right";
 import BottomArrowIcon from "./SVG/Bottom";
+import RenderFileIcon from "./RenderFileIcon";
 
 interface IProps {
   fileTree: IFile;
@@ -12,7 +13,7 @@ interface IProps {
 const RecursiveComponent = ({
   fileTree: { name, isFolder, children },
 }: IProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const toggle = () => setIsOpen((prev) => !prev);
 
@@ -20,18 +21,26 @@ const RecursiveComponent = ({
     <div className="mb-2 ml-2 cursor-pointer">
       <div className="flex items-center mb-1">
         {isFolder ? (
-          <div onClick={toggle} className="flex itmes-center">
-            {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
-            <FolderIcon />
+          <div onClick={toggle} className="flex items-center">
+            <span className="mr-1">
+              {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
+            </span>
+            <RenderFileIcon
+              fileName={name}
+              isFolder={isFolder}
+              isOpen={isOpen}
+            />
+            <span className="ml-1">{name}</span>
           </div>
         ) : (
-          <span className="mr-1">
-            <FileIcon />
-          </span>
+          <div className="ml-4 flex items-center">
+            <RenderFileIcon fileName={name} />
+            <span className="ml-1">{name}</span>
+          </div>
         )}
-        <span>{name}</span>
       </div>
-      {children &&
+      {isOpen &&
+        children &&
         children.map((file, idx) => (
           <RecursiveComponent key={idx} fileTree={file} />
         ))}
