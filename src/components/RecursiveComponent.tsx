@@ -43,7 +43,7 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
             <span className="ml-1">{name}</span>
           </div>
         ) : (
-          <div className="ml-4 flex items-center" onClick={() => dispatch(setOpenedFiles([...openedFile, fileTree]))}>
+          <div className="ml-4 flex items-center" onClick={onFileClicked}>
             <RenderFileIcon fileName={name} />
             <span className="ml-1">{name}</span>
           </div>
