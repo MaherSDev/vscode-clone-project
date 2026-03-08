@@ -15,7 +15,7 @@ const OpenedFileBar = () => {
           <OpenedFileBarItem key={file.id} file={file} />
         ))}
       </div>
-      <FileSyntaxHighlighter content={fileContent} />
+      {fileContent && <FileSyntaxHighlighter content={fileContent} />}
     </div>
   );
 };
