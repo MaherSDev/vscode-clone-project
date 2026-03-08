@@ -5,7 +5,7 @@ import BottomArrowIcon from "./SVG/Bottom";
 import RenderFileIcon from "./RenderFileIcon";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../app/store";
-import { setOpenedFiles } from "../app/features/fileTreeSlice";
+import { setOpenedFilesAction } from "../app/features/fileTreeSlice";
 import { doesFileObjExist } from "../utils/functions";
 
 interface IProps {
@@ -15,16 +15,16 @@ interface IProps {
 const RecursiveComponent = ({ fileTree }: IProps) => {
 	const { id, name, isFolder, children } = fileTree;
   const dispatch = useDispatch();
-  const { openedFile } = useSelector((state: RootState) => state.tree);
+  const { openedFiles } = useSelector((state: RootState) => state.tree);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
 
 
   const toggle = () => setIsOpen((prev) => !prev);
 	const onFileClicked = () => {
-		const exists = doesFileObjExist(openedFile, id);
+		const exists = doesFileObjExist(openedFiles, id);
 		if (exists) return;
-		dispatch(setOpenedFiles([...openedFile, fileTree]));
+		dispatch(setOpenedFilesAction([...openedFiles, fileTree]));
 	}
 
   return (

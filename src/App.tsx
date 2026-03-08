@@ -1,11 +1,17 @@
+import OpenedFileBar from "./components/OpenedFileBar";
 import RecursiveComponent from "./components/RecursiveComponent";
 import { fileTree } from "./data/fileTree";
 
 const App = () => {
 
   return (
-    <div className="my-5">
-      <RecursiveComponent fileTree={fileTree}/>
+    <div>
+      <div className="flex h-dvh">
+        <div className="w-64 border-r border-white">
+          <RecursiveComponent fileTree={fileTree}/>
+        </div>
+        <OpenedFileBar />
+      </div>
     </div>
   );
 }
