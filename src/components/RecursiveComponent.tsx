@@ -5,7 +5,10 @@ import BottomArrowIcon from "./SVG/Bottom";
 import RenderFileIcon from "./RenderFileIcon";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../app/store";
-import { setOpenedFilesAction } from "../app/features/fileTreeSlice";
+import {
+  setClickedFileAction,
+  setOpenedFilesAction,
+} from "../app/features/fileTreeSlice";
 import { doesFileObjExist } from "../utils/functions";
 
 interface IProps {
@@ -13,19 +16,24 @@ interface IProps {
 }
 
 const RecursiveComponent = ({ fileTree }: IProps) => {
-	const { id, name, isFolder, children } = fileTree;
+  const { id, name, isFolder, children, content } = fileTree;
   const dispatch = useDispatch();
   const { openedFiles } = useSelector((state: RootState) => state.tree);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-
-
   const toggle = () => setIsOpen((prev) => !prev);
-	const onFileClicked = () => {
-		const exists = doesFileObjExist(openedFiles, id);
-		if (exists) return;
-		dispatch(setOpenedFilesAction([...openedFiles, fileTree]));
-	}
+  const onFileClicked = () => {
+    const exists = doesFileObjExist(openedFiles, id);
+    dispatch(
+      setClickedFileAction({
+        filename: name,
+        fileContent: content,
+        activeTabId: id,
+      }),
+    );
+    if (exists) return;
+    dispatch(setOpenedFilesAction([...openedFiles, fileTree]));
+  };
 
   return (
     <div className="mb-2 ml-2 cursor-pointer">
