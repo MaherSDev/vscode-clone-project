@@ -1,5 +1,6 @@
 import OpenedFileBar from "./components/OpenedFileBar";
 import RecursiveComponent from "./components/RecursiveComponent";
+import ResizablePanel from "./components/ResizablePanel";
 import { fileTree } from "./data/fileTree";
 
 const App = () => {
@@ -10,7 +11,8 @@ const App = () => {
           <RecursiveComponent fileTree={fileTree} />
         </div>
         <div className="w-full">
-          <OpenedFileBar />
+          {/* <OpenedFileBar /> */}
+          <ResizablePanel />
         </div>
       </div>
     </div>
