@@ -1,3 +1,4 @@
+import type { ReactNode } from "react";
 import {
   Group,
   Panel,
@@ -6,10 +7,16 @@ import {
 } from "react-resizable-panels";
 
 interface IProps {
-  defaultLayout?: number[] | undefined
+  defaultLayout?: number[] | undefined;
+  leftPanel: ReactNode;
+  rightPanel: ReactNode;
 }
 
-const ResizablePanel = ({ defaultLayout = [33, 67] }: IProps) => {
+const ResizablePanel = ({
+  defaultLayout = [33, 67],
+  leftPanel,
+  rightPanel,
+}: IProps) => {
   const { onLayoutChanged } = useDefaultLayout({
     id: "unique-layout-id",
     storage: localStorage,
@@ -17,11 +24,11 @@ const ResizablePanel = ({ defaultLayout = [33, 67] }: IProps) => {
   return (
     <Group onLayoutChanged={onLayoutChanged}>
       <Panel defaultSize={defaultLayout[0]} id="left">
-        left
+        {leftPanel}
       </Panel>
-      <Separator className="w-1 bg-red-500"/>
+      <Separator className="w-1 border-r-2 border-white" />
       <Panel defaultSize={defaultLayout[1]} id="right">
-        right
+        {rightPanel}
       </Panel>
     </Group>
   );

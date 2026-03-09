@@ -7,12 +7,19 @@ const App = () => {
   return (
     <div>
       <div className="flex h-dvh">
-        <div className="w-64 border-r border-white">
-          <RecursiveComponent fileTree={fileTree} />
-        </div>
         <div className="w-full">
-          {/* <OpenedFileBar /> */}
-          <ResizablePanel />
+          <ResizablePanel
+            leftPanel={
+              <div className="p-2">
+                <RecursiveComponent fileTree={fileTree} />
+              </div>
+            }
+            rightPanel={
+              <div className="w-full">
+                <OpenedFileBar />
+              </div>
+            }
+          />
         </div>
       </div>
     </div>
