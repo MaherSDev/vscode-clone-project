@@ -19,6 +19,7 @@ const OpenedFileBarItem = ({ file }: IProps) => {
     openedFiles,
     clickedFile: { activeTabId },
   } = useSelector((state: RootState) => state.tree);
+  
 
   // ** Handlers
   const onClick = () => {
@@ -64,6 +65,7 @@ const OpenedFileBarItem = ({ file }: IProps) => {
         id === activeTabId ? "border-[#cf6ccf]" : "border-transparent"
       }`}
       onClick={onClick}
+      
     >
       <RenderFileIcon fileName={name} />
       <span className="cursor-pointer duratoin-300 flex justify-center items-center w-fit mr-2 p-1 rounded-md">
@@ -78,6 +80,7 @@ const OpenedFileBarItem = ({ file }: IProps) => {
       >
         <CloseIcon />
       </span>
+      
     </div>
   );
 };
