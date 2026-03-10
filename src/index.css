@@ -56,6 +56,12 @@
 
   /* Animations */
 }
+
+@layer components {
+  .contex-menu-item{
+    @apply w-full px-7 py-2 cursor-pointer hover:bg-gray-200 rounded-md border-x-5 border-white;
+  }
+}
 html {
   font-family: var(--font-assistant), sans-serif;
 }
