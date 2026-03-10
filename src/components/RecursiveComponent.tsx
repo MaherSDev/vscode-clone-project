@@ -36,33 +36,47 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
   };
 
   return (
-    <div className="cursor-pointer">
-      <div className="flex items-center mb-1">
-        {isFolder ? (
-          <div onClick={toggle} className="flex items-center">
-            <span className="mr-1">
-              {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
-            </span>
-            <RenderFileIcon
-              fileName={name}
-              isFolder={isFolder}
-              isOpen={isOpen}
-            />
-            <span className="ml-1 text-nowrap">{name}</span>
-          </div>
-        ) : (
-          <div className="ml-4 flex items-center" onClick={onFileClicked}>
-            <RenderFileIcon fileName={name} />
-            <span className="ml-1 text-nowrap">{name}</span>
-          </div>
-        )}
+    <>
+      <div className="cursor-pointer">
+        <div className="flex items-center mb-1">
+          {isFolder ? (
+            <div className="">
+              <div
+                className="recursive-component hover:bg-[#64646473] duratoin-300"
+                onClick={toggle}
+              ></div>
+              <div className="flex items-center w-full relative">
+                <span className="mr-1 relative z-2">
+                  {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
+                </span>
+                <RenderFileIcon
+                  fileName={name}
+                  isFolder={isFolder}
+                  isOpen={isOpen}
+                />
+                <span className="ml-1 text-nowrap">{name}</span>
+              </div>
+            </div>
+          ) : (
+            <div className="ml-4 flex items-center" onClick={onFileClicked}>
+              <div
+                className="recursive-component hover:bg-[#64646473] duratoin-300"
+                onClick={onFileClicked}
+              ></div>
+              <RenderFileIcon fileName={name} />
+              <span className="ml-1 text-nowrap">{name}</span>
+            </div>
+          )}
+        </div>
+        {isOpen &&
+          children &&
+          children.map((file, idx) => (
+            <div className="pl-2 relative z-2" key={idx}>
+              <RecursiveComponent fileTree={file} />
+            </div>
+          ))}
       </div>
-      {isOpen &&
-        children &&
-        children.map((file, idx) => (
-          <RecursiveComponent key={idx} fileTree={file} />
-        ))}
-    </div>
+    </>
   );
 };
 
