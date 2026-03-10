@@ -13,9 +13,10 @@ import { doesFileObjExist } from "../utils/functions";
 
 interface IProps {
   fileTree: IFile;
+  index?: number;
 }
 
-const RecursiveComponent = ({ fileTree }: IProps) => {
+const RecursiveComponent = ({ fileTree, index }: IProps) => {
   const { id, name, isFolder, children, content } = fileTree;
   const dispatch = useDispatch();
   const { openedFiles } = useSelector((state: RootState) => state.tree);
@@ -40,39 +41,43 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
       <div className="cursor-pointer">
         <div className="flex items-center mb-1">
           {isFolder ? (
-            <div className="">
+            <div className="recursive">
               <div
-                className="recursive-component hover:bg-[#64646473] duratoin-300"
+                style={{ top: index ? index * 22 : 0 }}
+                className={`recursive-component duration-300`}
                 onClick={toggle}
-              ></div>
-              <div className="flex items-center w-full relative">
-                <span className="mr-1 relative z-2">
-                  {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
-                </span>
-                <RenderFileIcon
-                  fileName={name}
-                  isFolder={isFolder}
-                  isOpen={isOpen}
-                />
-                <span className="ml-1 text-nowrap">{name}</span>
+              >
+                <div className="flex items-center w-full">
+                  <span className="mr-1 relative">
+                    {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
+                  </span>
+                  <RenderFileIcon
+                    fileName={name}
+                    isFolder={isFolder}
+                    isOpen={isOpen}
+                  />
+                  <span className="ml-1 text-nowrap">{name}</span>
+                </div>
               </div>
             </div>
           ) : (
-            <div className="ml-4 flex items-center" onClick={onFileClicked}>
-              <div
-                className="recursive-component hover:bg-[#64646473] duratoin-300"
-                onClick={onFileClicked}
-              ></div>
-              <RenderFileIcon fileName={name} />
-              <span className="ml-1 text-nowrap">{name}</span>
+            <div
+              style={{ top: index && index * 22 }}
+              className="recursive-component duration-300"
+              onClick={onFileClicked}
+            >
+              <div className="flex items-center">
+                <RenderFileIcon fileName={name} />
+                <span className="ml-1 text-nowrap">{name}</span>
+              </div>
             </div>
           )}
         </div>
         {isOpen &&
           children &&
           children.map((file, idx) => (
-            <div className="pl-2 relative z-2" key={idx}>
-              <RecursiveComponent fileTree={file} />
+            <div className="pl-2" key={idx}>
+              <RecursiveComponent fileTree={file} index={idx} />
             </div>
           ))}
       </div>

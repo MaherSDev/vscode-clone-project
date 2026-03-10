@@ -16,7 +16,7 @@ const App = () => {
           <ResizablePanel
             showLeftPanel
             leftPanel={
-              <div className="py-2">
+              <div className="py-2 relative">
                 <RecursiveComponent fileTree={fileTree} />
               </div>
             }

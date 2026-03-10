@@ -65,6 +65,30 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 `,
             },
+            {
+              id: uuid(),
+              name: "app",
+              isFolder: true,
+              children: [
+                {
+                  id: uuid(),
+                  name: "store.ts",
+                  isFolder: false,
+                  content: `import { configureStore } from "@reduxjs/toolkit";
+import fileTreeSlice from "./features/fileTreeSlice";
+
+export const store = configureStore({
+  reducer: {
+    tree: fileTreeSlice,
+  },
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+`,
+                },
+              ],
+            },
           ],
         },
         {

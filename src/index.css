@@ -65,11 +65,13 @@ body{
 }
 
 .recursive-component{
-  width: calc(100% + 2.8%);
+  width: calc(100% + 10%);
   height: 25px;
   position: absolute;
-  top: 0;
-  left: -2.5%; 
+  left: -10%; 
   z-index: 0;
   cursor: pointer;
+}
+.recursive:hover .recursive-component{
+	background-color: #64646473;
 }
