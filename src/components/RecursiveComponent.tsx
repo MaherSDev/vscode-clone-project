@@ -16,7 +16,7 @@ interface IProps {
   index?: number;
 }
 
-const RecursiveComponent = ({ fileTree, index }: IProps) => {
+const RecursiveComponent = ({ fileTree }: IProps) => {
   const { id, name, isFolder, children, content } = fileTree;
   const dispatch = useDispatch();
   const { openedFiles } = useSelector((state: RootState) => state.tree);
