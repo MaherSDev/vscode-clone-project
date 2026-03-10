@@ -26,8 +26,12 @@ const OpenedFileBar = () => {
           <OpenedFileBarItem key={file.id} file={file} />
         ))}
       </div>
-
-      {showContextMenu && <ContextMenu setShowMenu={setShowContextMenu} positions={contextMenuPosition} />}
+      {showContextMenu && (
+        <ContextMenu
+          setShowMenu={setShowContextMenu}
+          positions={contextMenuPosition}
+        />
+      )}
     </div>
   );
 };
