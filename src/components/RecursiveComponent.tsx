@@ -41,27 +41,21 @@ const RecursiveComponent = ({ fileTree }: IProps) => {
       <div className="cursor-pointer">
         <div className="flex items-center mb-1">
           {isFolder ? (
-              <div
-                className={` hover:bg-[#64646473]duration-300 w-full`}
-                onClick={toggle}
-              >
-                <div className="flex items-center">
-                  <span className="mr-1 relative">
-                    {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
-                  </span>
-                  <RenderFileIcon
-                    fileName={name}
-                    isFolder={isFolder}
-                    isOpen={isOpen}
-                  />
-                  <span className="ml-1 text-nowrap">{name}</span>
-                </div>
+            <div className={`w-full`} onClick={toggle}>
+              <div className="flex items-center">
+                <span className="mr-1 relative">
+                  {isOpen ? <BottomArrowIcon /> : <RightArrowIcon />}
+                </span>
+                <RenderFileIcon
+                  fileName={name}
+                  isFolder={isFolder}
+                  isOpen={isOpen}
+                />
+                <span className="ml-1 text-nowrap">{name}</span>
               </div>
+            </div>
           ) : (
-            <div
-              className="ml-4 hover:bg-[#64646473] duration-300 w-full"
-              onClick={onFileClicked}
-            >
+            <div className="ml-4 w-full" onClick={onFileClicked}>
               <div className="flex items-center">
                 <RenderFileIcon fileName={name} />
                 <span className="ml-1 text-nowrap">{name}</span>
