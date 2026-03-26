@@ -56,6 +56,28 @@
 
   /* Animations */
 }
+
+@layer components {
+  .contex-menu-item{
+    @apply w-full px-7 py-2 cursor-pointer hover:bg-gray-200 rounded-md border-x-5 border-white;
+  }
+}
 html {
   font-family: var(--font-assistant), sans-serif;
+}
+body{
+  color: #fff;
+  background-color: #000;
+}
+
+.recursive-component{
+  width: 100%;
+  height: 25px;
+  position: absolute;
+  left: 0; 
+  z-index: 0;
+  cursor: pointer;
+}
+.recursive:hover .recursive-component{
+	background-color: #64646473;
 }
